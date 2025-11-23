@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Interactive Template (Tap to Reveal)</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Define custom colors and font for Tailwind JIT */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#1f2a52',
+                        'brand-accent': '#00bec7',
+                        'brand-light': '#d2f0f0',
+                        'brand-neutral': '#abb5bf',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+
+        /* --- Custom CSS for Sliding Panel and Fixed Dimensions --- */
+
+        .reveal-item {
+            /* Fixed dimensions from original request, but now responsive utilities handle the sizing */
+            width: 100%; /* Make it fluid within the grid column */
+            max-width: 390px;
+            height: 275px;
+            position: relative;
+            overflow: hidden; /* Crucial for the sliding effect */
+            box-shadow: 0 4px 12px rgba(31, 42, 82, 0.1); /* Using brand dark for subtle shadow */
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .reveal-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .info-panel {
+            position: absolute;
+            bottom: -100%; /* Start off-screen at the bottom */
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Use brand-accent color for the panel background */
+            background-color: #00bec7;
+            transition: bottom 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth sliding effect */
+            z-index: 10;
+        }
+
+        .reveal-item.active .info-panel {
+            bottom: 0; /* Slide up to cover the image */
+        }
+
+        .reveal-item.active .plus-icon {
+            display: none; /* Hide the plus icon when info is revealed */
+        }
+
+        .plus-icon {
+            z-index: 20; /* Ensure it's above the panel initially */
+            background-color: #d2f0f0; /* Light Grey Circle */
+        }
+    </style>
+</head>
+<body class="font-sans min-h-screen p-4 flex justify-center items-center bg-brand-light">
+
+    <!-- Container for the responsive grid -->
+    <div class="container mx-auto grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl">
+
+        <!-- Card 1 -->
+        <div class="reveal-item bg-white rounded-xl">
+            <!-- Image Placeholder -->
+            <img src="PLACEHOLDER ICON/IMAGE" alt="PLACEHOLDER ICON/IMAGE"
+                 class="w-full h-full object-cover block"
+                 onerror="this.onerror=null; this.src='https://placehold.co/390x275/1f2a52/ffffff?text=Image+Placeholder';">
+
+            <!-- Plus Icon (Clickable) -->
+            <!-- Using SVG for perfect centering -->
+            <div class="plus-icon absolute bottom-4 right-4 rounded-full w-14 h-14 flex justify-center items-center select-none shadow-lg hover:opacity-80" 
+                 style="color: #00bec7; background-color: #d2f0f0;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" style="color: #00bec7;">
+                    <path d="M12 4a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5a1 1 0 0 1 1-1z"/>
+                </svg>
+            </div>
+
+            <!-- Info Panel (Slides Up) -->
+            <div class="info-panel p-4 flex flex-col justify-center items-center text-center">
+                <h3 class="text-xl font-bold text-brand-dark mb-3">LOREM IPSUM HEADING 1</h3>
+                <ul class="text-brand-dark space-y-1.5 text-base">
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Sed do eiusmod tempor incididunt ut labore et dolore.</li>
+                    <li>Magna aliqua ut enim ad minim veniam, quis nostrud.</li>
+                    <li>Exercitation ullamco laboris nisi ut aliquip ex ea commodo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="reveal-item bg-white rounded-xl">
+            <!-- Image Placeholder -->
+            <img src="PLACEHOLDER ICON/IMAGE" alt="PLACEHOLDER ICON/IMAGE"
+                 class="w-full h-full object-cover block"
+                 onerror="this.onerror=null; this.src='https://placehold.co/390x275/1f2a52/ffffff?text=Image+Placeholder';">
+
+            <!-- Plus Icon (Clickable) -->
+            <div class="plus-icon absolute bottom-4 right-4 rounded-full w-14 h-14 flex justify-center items-center select-none shadow-lg hover:opacity-80"
+                 style="color: #00bec7; background-color: #d2f0f0;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" style="color: #00bec7;">
+                    <path d="M12 4a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5a1 1 0 0 1 1-1z"/>
+                </svg>
+            </div>
+
+            <!-- Info Panel (Slides Up) -->
+            <div class="info-panel p-4 flex flex-col justify-center items-center text-center">
+                <h3 class="text-xl font-bold text-brand-dark mb-3">LOREM IPSUM HEADING 2</h3>
+                <ul class="text-brand-dark space-y-1.5 text-base">
+                    <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</li>
+                    <li>Dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat non proident.</li>
+                    <li>Sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="reveal-item bg-white rounded-xl">
+            <!-- Image Placeholder -->
+            <img src="PLACEHOLDER ICON/IMAGE" alt="PLACEHOLDER ICON/IMAGE"
+                 class="w-full h-full object-cover block"
+                 onerror="this.onerror=null; this.src='https://placehold.co/390x275/1f2a52/ffffff?text=Image+Placeholder';">
+
+            <!-- Plus Icon (Clickable) -->
+            <div class="plus-icon absolute bottom-4 right-4 rounded-full w-14 h-14 flex justify-center items-center select-none shadow-lg hover:opacity-80"
+                 style="color: #00bec7; background-color: #d2f0f0;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" style="color: #00bec7;">
+                    <path d="M12 4a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5a1 1 0 0 1 1-1z"/>
+                </svg>
+            </div>
+
+            <!-- Info Panel (Slides Up) -->
+            <div class="info-panel p-4 flex flex-col justify-center items-center text-center">
+                <h3 class="text-xl font-bold text-brand-dark mb-3">LOREM IPSUM HEADING 3</h3>
+                <ul class="text-brand-dark space-y-1.5 text-base">
+                    <li>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis.</li>
+                    <li>Suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Card 4 -->
+        <div class="reveal-item bg-white rounded-xl">
+            <!-- Image Placeholder -->
+            <img src="PLACEHOLDER ICON/IMAGE" alt="PLACEHOLDER ICON/IMAGE"
+                 class="w-full h-full object-cover block"
+                 onerror="this.onerror=null; this.src='https://placehold.co/390x275/1f2a52/ffffff?text=Image+Placeholder';">
+
+            <!-- Plus Icon (Clickable) -->
+            <div class="plus-icon absolute bottom-4 right-4 rounded-full w-14 h-14 flex justify-center items-center select-none shadow-lg hover:opacity-80"
+                 style="color: #00bec7; background-color: #d2f0f0;">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor" style="color: #00bec7;">
+                    <path d="M12 4a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2h-6v6a1 1 0 1 1-2 0v-6H5a1 1 0 1 1 0-2h6V5a1 1 0 0 1 1-1z"/>
+                </svg>
+            </div>
+
+            <!-- Info Panel (Slides Up) -->
+            <div class="info-panel p-4 flex flex-col justify-center items-center text-center">
+                <h3 class="text-xl font-bold text-brand-dark mb-3">LOREM IPSUM HEADING 4</h3>
+                <ul class="text-brand-dark space-y-1.5 text-base">
+                    <li>Quis autem vel eum iure reprehenderit qui in ea voluptate velit.</li>
+                    <li>Esse quam nihil molestiae consequatur, vel illum qui dolorem.</li>
+                    <li>Eum fugiat quo voluptas nulla pariatur?</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const revealItems = document.querySelectorAll('.reveal-item');
+
+            // Function to close all other open panels
+            const closeAllPanels = (currentItem) => {
+                revealItems.forEach(item => {
+                    if (item !== currentItem && item.classList.contains('active')) {
+                        item.classList.remove('active');
+                    }
+                });
+            };
+
+            revealItems.forEach(item => {
+                const plusIcon = item.querySelector('.plus-icon');
+                const infoPanel = item.querySelector('.info-panel');
+
+                // 1. Click on the Plus Icon to Open
+                plusIcon.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent the click from bubbling up to the panel click listener
+                    // Close others before opening this one
+                    closeAllPanels(item);
+                    // Toggle the 'active' class on the parent reveal-item
+                    item.classList.toggle('active');
+                });
+
+                // 2. Click on the Info Panel to Close
+                infoPanel.addEventListener('click', (event) => {
+                    // Prevent the click on the panel from triggering the body/document close (if implemented)
+                    event.stopPropagation();
+                    // Close the panel
+                    item.classList.remove('active');
+                });
+            });
+            
+            // 3. Optional: Close panels by clicking anywhere outside the active item
+            document.body.addEventListener('click', (event) => {
+                const activeItem = document.querySelector('.reveal-item.active');
+                if (activeItem && !activeItem.contains(event.target)) {
+                    activeItem.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
